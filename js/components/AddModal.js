@@ -67,30 +67,39 @@ export default class AddModal extends Component {
           <Modal.Title>Add a Phone</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        {this.renderError()}
-        <Form horizontal>
-          <FormGroup controlId="phoneModelControl">
-           <Col sm={12}>
-             <input className="form-control" ref="phoneModelInput" type="text" placeholder="Phone Model" />
-           </Col>
-          </FormGroup>
-          <FormGroup controlId="phoneImageControl">
-           <Col sm={12}>
-             <input className="form-control" ref="phoneImageInput" type="text" placeholder="Phone Image" />
-           </Col>
-          </FormGroup>
-          <FormGroup>
-           <Col sm={12}>
-             <Button
-               style={Style.addButton}
-               type="button"
-               onClick={() => this.addPhone()}
-              >
-               Add
-             </Button>
-           </Col>
-          </FormGroup>
-       </Form>
+          {this.renderError()}
+          <Form horizontal>
+            <FormGroup controlId="phoneModelControl">
+             <Col sm={12}>
+               <input className="form-control" ref="phoneModelInput" type="text" placeholder="Phone Model" />
+             </Col>
+            </FormGroup>
+            <FormGroup controlId="phoneImageControl">
+             <Col sm={12}>
+               <input className="form-control" ref="phoneImageInput" type="text" placeholder="Phone Image" />
+             </Col>
+            </FormGroup>
+            <FormGroup>
+             <Col sm={12}>
+               <Button
+                 style={Style.addButton}
+                 type="button"
+                 onClick={() => this.addPhone()}
+                >
+                 Add
+               </Button>
+             </Col>
+            </FormGroup>
+          </Form>
+          <div style={Style.imageTips}>
+            <div>Sample images:</div>
+            <p />
+            <div>{`iPhone 6 - https://goo.gl/ndJdW9`}</div>
+            <div>{`Galaxy S7 - https://goo.gl/uanrHM`}</div>
+            <div>{`Moto X - https://goo.gl/690VPe`}</div>
+            <div>{`Nexus 5 - https://goo.gl/Fq46CZ`}</div>
+            <div>{`Zenfone 3 - https://goo.gl/enx7R7`}</div>
+          </div>
         </Modal.Body>
       </Modal.Dialog>
     );
@@ -103,6 +112,11 @@ const Style = {
   },
   addButton: {
     float: 'right',
+  },
+  imageTips: {
+    color: '#656565',
+    fontSize: '13px',
+    fontStyle: 'italic',
   },
 };
 

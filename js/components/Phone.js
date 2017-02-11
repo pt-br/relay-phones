@@ -10,7 +10,8 @@ export default class Phone extends Component {
     const { phoneId, model, image } = this.props;
 
     return (
-      <div phoneId={phoneId} style={Style.container}>
+      <div style={Style.container}>
+        <div style={Style.removePhone}>X</div>
         <div>
           <img style={Style.phoneImage} src={image} />
         </div>
@@ -51,6 +52,14 @@ const Style = {
     display: 'block',
     left: '0',
     right: '0',
+  },
+  removePhone: {
+    position: 'absolute',
+    right: '8px',
+    color: '#cc3030',
+    top: '5px',
+    fontWeight: 'bold',
+    fontSize: '18px',
   },
 };
 
