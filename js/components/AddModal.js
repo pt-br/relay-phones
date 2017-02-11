@@ -98,7 +98,7 @@ export default class AddModal extends Component {
             <div>{`Galaxy S7 - https://goo.gl/uanrHM`}</div>
             <div>{`Moto X - https://goo.gl/690VPe`}</div>
             <div>{`Nexus 5 - https://goo.gl/Fq46CZ`}</div>
-            <div>{`Zenfone 3 - https://goo.gl/enx7R7`}</div>
+            <div>{`Zenfone 3 - https://goo.gl/w2e5xX`}</div>
           </div>
         </Modal.Body>
       </Modal.Dialog>

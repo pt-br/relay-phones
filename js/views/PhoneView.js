@@ -47,6 +47,9 @@ class PhoneView extends Component {
         <div style={Style.container}>
           <div style={Style.innerContainer}>
             <Title text="Relay Phones - Demo Application" />
+            <div style={Style.viewSource}>
+              view <a target="_blank" href="https://github.com/pt-br/relay-phones">source</a>
+            </div>
             <PhoneList viewer={viewer} handleModal={this.handleModal}/>
           </div>
         </div>
