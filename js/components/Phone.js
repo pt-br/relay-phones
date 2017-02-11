@@ -20,16 +20,23 @@ export default class Phone extends Component {
     );
   };
 
+  editPhone = (phoneId, model) => {
+    const { handleEditModal } = this.props;
+    handleEditModal(true, phoneId, model);
+  };
+
   render() {
     const { phoneId, model, image } = this.props;
 
     return (
       <div style={Style.container}>
         <div style={Style.removePhone} onClick={() => this.removePhone(phoneId)}>X</div>
-        <div>
-          <img style={Style.phoneImage} src={image} />
+        <div onClick={() => this.editPhone(phoneId, model)}>
+          <div>
+            <img style={Style.phoneImage} src={image} />
+          </div>
+          <div style={Style.phoneModel}>Model: {model} id: {phoneId}</div>
         </div>
-        <div style={Style.phoneModel}>Model: {model}</div>
       </div>
     );
   }
@@ -82,4 +89,5 @@ Phone.propTypes = {
   phoneId: React.PropTypes.string,
   model: React.PropTypes.string,
   image: React.PropTypes.string,
+  handleEditModal: React.PropTypes.func,
 };

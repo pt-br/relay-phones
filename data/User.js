@@ -11,7 +11,6 @@ class User {
    * It inserts a Phone to User.
    */
   addPhone(phone) {
-    console.log('[User.js] Adding Phone into User...');
     this.phones.push(phone);
   }
 
@@ -28,8 +27,22 @@ class User {
    * It removes a phone based on phoneId.
    */
   removePhoneById(phoneId) {
-    console.log(`[User.js] Removing Phone(PhoneId: ${phoneId}) from User...`);
     this.phones = this.phones.filter(phone => phone.phoneId !== phoneId);
+    return this.phones;
+  }
+
+  /**
+   * This function will be called by GraphQL.
+   * It updates a phone based on phoneId.
+   */
+  updatePhone(phoneId, phoneModel, phoneImage) {
+    this.phones.map(phone => {
+      if (phone.phoneId == phoneId) {
+        phone.model = phoneModel;
+        phone.image = phoneImage;
+      }
+    });
+    return this.phones;
   }
 }
 

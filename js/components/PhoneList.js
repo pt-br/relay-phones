@@ -10,7 +10,7 @@ export default class PhoneList extends Component {
   }
 
   render() {
-    const { viewer, handleModal } = this.props;
+    const { viewer, handleModal, handleEditModal } = this.props;
     const { edges } = viewer.phones;
 
     return (
@@ -24,6 +24,7 @@ export default class PhoneList extends Component {
               phoneId={phoneId}
               model={model}
               image={image}
+              handleEditModal={handleEditModal}
             />
           );
         })}
@@ -47,4 +48,5 @@ const Style = {
 PhoneList.propTypes = {
   viewer: React.PropTypes.object,
   handleModal: React.PropTypes.func,
+  handleEditModal: React.PropTypes.func,
 };

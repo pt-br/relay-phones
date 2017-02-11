@@ -47,6 +47,10 @@ class Database {
     return phones;
   }
 
+  /**
+   * This function will be called by Database.js.
+   * It checks for unique IDs while creating phone instances.
+   */
   checkUniqueId(newId, phones) {
     let isUnique = true;
 
@@ -84,8 +88,16 @@ class Database {
    * It removes a phone based on phoneId.
    */
   removePhoneById(phoneId) {
-    this.user.removePhoneById(phoneId);
-    const phones = this.getPhones();
+    const phones = this.user.removePhoneById(phoneId);
+    return phones;
+  }
+
+  /**
+   * This function will be called by GraphQL.
+   * It updates a phone based on phoneId.
+   */
+  updatePhone(phoneId, phoneModel, phoneImage) {
+    const phones = this.user.updatePhone(phoneId, phoneModel, phoneImage);
     return phones;
   }
 }
