@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Relay from 'react-relay';
+
+import RemovePhoneMutation from '../mutations/RemovePhoneMutation';
 
 export default class Phone extends Component {
 
@@ -6,16 +9,27 @@ export default class Phone extends Component {
     super(props);
   }
 
+  removePhone = (phoneId) => {
+    const { viewer } = this.props;
+
+    Relay.Store.commitUpdate(
+      new RemovePhoneMutation({
+        viewer,
+        phoneId,
+      }),
+    );
+  };
+
   render() {
     const { phoneId, model, image } = this.props;
 
     return (
       <div style={Style.container}>
-        <div style={Style.removePhone}>X</div>
+        <div style={Style.removePhone} onClick={() => this.removePhone(phoneId)}>X</div>
         <div>
           <img style={Style.phoneImage} src={image} />
         </div>
-        <div style={Style.phoneModel}>Model: {model} ID: {phoneId}</div>
+        <div style={Style.phoneModel}>Model: {model}</div>
       </div>
     );
   }
@@ -64,6 +78,7 @@ const Style = {
 };
 
 Phone.propTypes = {
+  viewer: React.PropTypes.object,
   phoneId: React.PropTypes.string,
   model: React.PropTypes.string,
   image: React.PropTypes.string,

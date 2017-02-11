@@ -8,6 +8,7 @@ import PhoneList from '../components/PhoneList';
 import AddModal from '../components/AddModal';
 
 import AddPhoneMutation from '../mutations/AddPhoneMutation';
+import RemovePhoneMutation from '../mutations/RemovePhoneMutation';
 
 class PhoneView extends Component {
 
@@ -81,6 +82,7 @@ export default Relay.createContainer(PhoneView, {
     viewer: () => Relay.QL`
       fragment on User {
         ${AddPhoneMutation.getFragment('viewer')}
+        ${RemovePhoneMutation.getFragment('viewer')}
         phones(first: 908098879) {
           edges {
             node {

@@ -18,7 +18,13 @@ export default class PhoneList extends Component {
         {edges.map(edge => {
           const { phoneId, model, image } = edge.node;
           return (
-            <Phone key={phoneId} phoneId={phoneId} model={model} image={image} />
+            <Phone
+              viewer={viewer}
+              key={phoneId}
+              phoneId={phoneId}
+              model={model}
+              image={image}
+            />
           );
         })}
         <AddPhone handleModal={handleModal}/>
