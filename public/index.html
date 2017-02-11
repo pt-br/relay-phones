@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Relay Boilerplate | Message in a Bottle example</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+  </head>
+  <body>
+    <div id="main"></div>
+    <script type="text/javascript">
+      // Force `fetch` polyfill to workaround Chrome not displaying request body
+      // in developer tools for the native `fetch`.
+      self.fetch = null;
+    </script>
+    <script src="http://localhost:3000/webpack-dev-server.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
