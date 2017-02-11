@@ -53,8 +53,8 @@ class Database {
     let isUnique = true;
 
     if (phones.length > 0) {
-      phones.map(({ id }) => {
-        if (id === newId) {
+      phones.map(({ phoneId }) => {
+        if (phoneId === newId) {
           isUnique = false;
         }
       }, newId);
@@ -67,9 +67,9 @@ class Database {
    * This function will be called by GraphQL.
    * It returns a message by id.
    */
-  getPhoneById(id) {
+  getPhoneById(phoneId) {
     const phones = this.user.getPhones();
-    const selectedPhone = phones.filter(phone => phone.id == id);
+    const selectedPhone = phones.filter(phone => phone.phoneId == phoneId);
     return selectedPhone;
   }
 
@@ -85,8 +85,8 @@ class Database {
    * This function will be called by GraphQL.
    * It removes a message based on messageId.
    */
-  removePhoneById(id) {
-    this.user.removePhoneById(id);
+  removePhoneById(phoneId) {
+    this.user.removePhoneById(phoneId);
     const phones = this.getPhones();
     return phones;
   }

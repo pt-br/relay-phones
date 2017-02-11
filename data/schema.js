@@ -56,6 +56,10 @@ const UserType = new GraphQLObjectType({
   name: 'User',
   fields: () => ({
     id: globalIdField('User'),
+    userId: {
+      type: new GraphQLNonNull(GraphQLString),
+      resolve: (obj) => obj.userId,
+    },
     phones: {
       type: phoneConnection,
       args: connectionArgs,
@@ -69,6 +73,10 @@ const PhoneType = new GraphQLObjectType({
   name: 'Phone',
   fields: () => ({
     id: globalIdField('Phone'),
+    phoneId: {
+      type: new GraphQLNonNull(GraphQLString),
+      resolve: (obj) => obj.phoneId,
+    },
     model: {
       type: new GraphQLNonNull(GraphQLString),
       resolve: (obj) => obj.model,
@@ -108,6 +116,25 @@ const AddPhoneMutation = mutationWithClientMutationId({
   },
 });
 
+const RemovePhoneMutation = mutationWithClientMutationId({
+  name: 'RemovePhone',
+  inputFields: {
+    phoneId: {
+      type: new GraphQLNonNull(GraphQLString),
+    },
+  },
+  outputFields: {
+    viewer: {
+      type: UserType,
+      resolve: () => database.getUser(),
+    },
+  },
+  mutateAndGetPayload: ({ phoneId }) => {
+    const remainingPhones = database.removePhoneById(phoneId);
+    return remainingPhones;
+  },
+});
+
 /**
  * This is the type that will be the root of our query,
  * and the entry point into our schema.
@@ -131,8 +158,7 @@ const Mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: () => ({
     addPhone: AddPhoneMutation,
-
-    // removeMessage: RemoveMessageMutation,
+    removePhone: RemovePhoneMutation,
   }),
 });
 

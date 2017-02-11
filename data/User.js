@@ -1,7 +1,8 @@
 class User {
-  constructor(id) {
-    console.log(`[User.js] Constructing a new User with id: ${id}`);
-    this.id = id;
+  constructor(userId) {
+    console.log(`[User.js] Constructing a new User with userId: ${userId}`);
+    this.id = userId; // This will be used by GraphQL.
+    this.userId = userId; // This will be used by Database.
     this.phones = [];
   }
 
@@ -26,9 +27,9 @@ class User {
    * This function will be called by Database.js.
    * It removes a message based on messageId.
    */
-  removePhoneById(id) {
-    console.log(`[User.js] Removing Phone(ID: ${id}) from User...`);
-    this.phones = this.phones.filter(phone => phone.id !== id);
+  removePhoneById(phoneId) {
+    console.log(`[User.js] Removing Phone(PhoneId: ${phoneId}) from User...`);
+    this.phones = this.phones.filter(phone => phone.phoneId !== phoneId);
   }
 }
 

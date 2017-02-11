@@ -16,9 +16,9 @@ export default class PhoneList extends Component {
     return (
       <div style={Style.container}>
         {edges.map(edge => {
-          const { id, model, image } = edge.node;
+          const { phoneId, model, image } = edge.node;
           return (
-            <Phone key={id} id={id} model={model} image={image} />
+            <Phone key={phoneId} phoneId={phoneId} model={model} image={image} />
           );
         })}
         <AddPhone handleModal={handleModal}/>

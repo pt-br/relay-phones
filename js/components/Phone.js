@@ -7,14 +7,14 @@ export default class Phone extends Component {
   }
 
   render() {
-    const { id, model, image } = this.props;
+    const { phoneId, model, image } = this.props;
 
     return (
-      <div id={id} style={Style.container}>
+      <div phoneId={phoneId} style={Style.container}>
         <div>
           <img style={Style.phoneImage} src={image} />
         </div>
-        <div style={Style.phoneModel}>{model}</div>
+        <div style={Style.phoneModel}>Model: {model} ID: {phoneId}</div>
       </div>
     );
   }
@@ -55,7 +55,7 @@ const Style = {
 };
 
 Phone.propTypes = {
-  id: React.PropTypes.string,
+  phoneId: React.PropTypes.string,
   model: React.PropTypes.string,
   image: React.PropTypes.string,
 };

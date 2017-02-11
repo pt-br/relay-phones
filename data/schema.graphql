@@ -11,6 +11,7 @@ type AddPhonePayload {
 
 type Mutation {
   addPhone(input: AddPhoneInput!): AddPhonePayload
+  removePhone(input: RemovePhoneInput!): RemovePhonePayload
 }
 
 interface Node {
@@ -26,6 +27,7 @@ type PageInfo {
 
 type Phone {
   id: ID!
+  phoneId: String!
   model: String!
   image: String
 }
@@ -45,7 +47,18 @@ type Query {
   viewer: User
 }
 
+input RemovePhoneInput {
+  phoneId: String!
+  clientMutationId: String!
+}
+
+type RemovePhonePayload {
+  viewer: User
+  clientMutationId: String!
+}
+
 type User implements Node {
   id: ID!
+  userId: String!
   phones(after: String, first: Int, before: String, last: Int): PhoneConnection
 }

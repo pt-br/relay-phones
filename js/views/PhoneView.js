@@ -84,7 +84,7 @@ export default Relay.createContainer(PhoneView, {
         phones(first: 908098879) {
           edges {
             node {
-              id
+              phoneId
               model
               image
             },
