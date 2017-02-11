@@ -14,6 +14,8 @@ class Database {
      */
     this.insertPhone('iPhone 6', 'https://goo.gl/ndJdW9');
     this.insertPhone('Galaxy S7', 'https://goo.gl/uanrHM');
+
+    // Moto X image url: https://goo.gl/690VPe
   }
 
   /**
@@ -21,18 +23,18 @@ class Database {
    * It receives a text string, creates a new Message instance and insert it to
    * our Bottle.
    */
-  insertPhone(text, image) {
+  insertPhone(model, image) {
     const phoneId = ShortId.generate();
     const phones = this.getPhones();
 
     const idIsUnique = this.checkUniqueId(phoneId, phones);
 
     if (!idIsUnique) {
-      this.insertPhone(text);
+      this.insertPhone(model);
       return false;
     }
 
-    const phone = new Phone(phoneId, text, image);
+    const phone = new Phone(phoneId, model, image);
 
     this.user.addPhone(phone);
     return phone;

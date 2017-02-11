@@ -10,8 +10,9 @@ export default class PhoneList extends Component {
   }
 
   render() {
-    const { viewer } = this.props;
+    const { viewer, handleModal } = this.props;
     const { edges } = viewer.phones;
+
     return (
       <div style={Style.container}>
         {edges.map(edge => {
@@ -20,7 +21,7 @@ export default class PhoneList extends Component {
             <Phone key={id} id={id} model={model} image={image} />
           );
         })}
-        <AddPhone />
+        <AddPhone handleModal={handleModal}/>
       </div>
     );
   }
@@ -39,4 +40,5 @@ const Style = {
 
 PhoneList.propTypes = {
   viewer: React.PropTypes.object,
+  handleModal: React.PropTypes.func,
 };

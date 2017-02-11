@@ -6,9 +6,15 @@ export default class AddPhone extends Component {
     super(props);
   }
 
+  openAddModal = () => {
+    const { handleModal } = this.props;
+
+    handleModal(true);
+  };
+
   render() {
     return (
-      <div style={Style.container}>
+      <div onClick={() => this.openAddModal()} style={Style.container}>
         <div style={Style.innerContainer}>
           <div style={Style.addPhone}>+</div>
         </div>
@@ -47,5 +53,5 @@ const Style = {
 };
 
 AddPhone.propTypes = {
-
+  handleModal: React.PropTypes.func,
 };

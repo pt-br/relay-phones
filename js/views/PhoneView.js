@@ -5,21 +5,49 @@ import TypedTransition from '../core/TypedTransition';
 
 import Title from '../components/Title';
 import PhoneList from '../components/PhoneList';
+import AddModal from '../components/AddModal';
+
+import AddPhoneMutation from '../mutations/AddPhoneMutation';
 
 class PhoneView extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      modalVisible: false,
+    };
+  }
+
+  handleModal = (modalVisible) => {
+    this.setState({
+      modalVisible,
+    });
+  };
+
+  renderModal() {
+    const { modalVisible } = this.state;
+    const { viewer } = this.props;
+
+    if (!modalVisible) {
+      return null;
+    }
+
+    return (
+      <AddModal viewer={viewer} handleModal={this.handleModal}/>
+    );
   }
 
   render() {
     const { viewer } = this.props;
 
     return (
-      <div style={Style.container}>
-        <div style={Style.innerContainer}>
-          <Title text="Relay Phones - Demo Application" />
-          <PhoneList viewer={viewer}/>
+      <div>
+        {this.renderModal()}
+        <div style={Style.container}>
+          <div style={Style.innerContainer}>
+            <Title text="Relay Phones - Demo Application" />
+            <PhoneList viewer={viewer} handleModal={this.handleModal}/>
+          </div>
         </div>
       </div>
     );
@@ -52,6 +80,7 @@ export default Relay.createContainer(PhoneView, {
   fragments: {
     viewer: () => Relay.QL`
       fragment on User {
+        ${AddPhoneMutation.getFragment('viewer')}
         phones(first: 908098879) {
           edges {
             node {

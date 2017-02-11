@@ -1,3 +1,18 @@
+input AddPhoneInput {
+  model: String!
+  image: String!
+  clientMutationId: String!
+}
+
+type AddPhonePayload {
+  viewer: User
+  clientMutationId: String!
+}
+
+type Mutation {
+  addPhone(input: AddPhoneInput!): AddPhonePayload
+}
+
 interface Node {
   id: ID!
 }

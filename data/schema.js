@@ -86,6 +86,28 @@ const PhoneType = new GraphQLObjectType({
 const { connectionType: phoneConnection } =
   connectionDefinitions({ name: 'Phone', nodeType: PhoneType });
 
+const AddPhoneMutation = mutationWithClientMutationId({
+  name: 'AddPhone',
+  inputFields: {
+    model: {
+      type: new GraphQLNonNull(GraphQLString),
+    },
+    image: {
+      type: new GraphQLNonNull(GraphQLString),
+    },
+  },
+  outputFields: {
+    viewer: {
+      type: UserType,
+      resolve: () => database.getUser(),
+    },
+  },
+  mutateAndGetPayload: ({ model, image }) => {
+    const newPhone = database.insertPhone(model, image);
+    return newPhone;
+  },
+});
+
 /**
  * This is the type that will be the root of our query,
  * and the entry point into our schema.
@@ -108,7 +130,8 @@ const Root = new GraphQLObjectType({
 const Mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: () => ({
-    // insertMessage: InsertMessageMutation,
+    addPhone: AddPhoneMutation,
+
     // removeMessage: RemoveMessageMutation,
   }),
 });
@@ -119,5 +142,5 @@ const Mutation = new GraphQLObjectType({
  */
 export var Schema = new GraphQLSchema({
   query: Root,
-  // mutation: Mutation,
+  mutation: Mutation,
 });
