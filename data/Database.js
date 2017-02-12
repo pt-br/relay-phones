@@ -28,7 +28,7 @@ class Database {
     const idIsUnique = this.checkUniqueId(phoneId, phones);
 
     if (!idIsUnique) {
-      this.insertPhone(model);
+      this.insertPhone(model, image);
       return false;
     }
 
