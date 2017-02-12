@@ -69,7 +69,7 @@ export default class EditModal extends Component {
     return (
       <Modal.Dialog style={Style.container}>
         <Modal.Header closeButton onClick={this.close}>
-          <Modal.Title>Editing phone {editingPhone.phoneModel}</Modal.Title>
+          <Modal.Title>Editing {editingPhone.phoneModel}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {this.renderError()}
