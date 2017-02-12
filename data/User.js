@@ -38,8 +38,11 @@ class User {
   updatePhone(phoneId, phoneModel, phoneImage) {
     this.phones.map(phone => {
       if (phone.phoneId == phoneId) {
-        phone.model = phoneModel;
-        phone.image = phoneImage;
+        /**
+         * Only update values if they are not empty.
+         */
+        phoneModel.length > 0 ? phone.model = phoneModel : false;
+        phoneImage.length > 0 ? phone.image = phoneImage : false;
       }
     });
     return this.phones;

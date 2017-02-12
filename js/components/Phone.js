@@ -35,7 +35,7 @@ export default class Phone extends Component {
           <div>
             <img style={Style.phoneImage} src={image} />
           </div>
-          <div style={Style.phoneModel}>Model: {model} id: {phoneId}</div>
+          <div style={Style.phoneModel}>Model: {model}</div>
         </div>
       </div>
     );

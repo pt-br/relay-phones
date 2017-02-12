@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Relay from 'react-relay';
 import { Alert, Modal, Form, FormGroup, FieldGroup, Col, Button } from 'react-bootstrap';
 
-import AddPhoneMutation from '../mutations/AddPhoneMutation';
+import UpdatePhoneMutation from '../mutations/UpdatePhoneMutation';
 
 export default class EditModal extends Component {
 
@@ -20,12 +20,15 @@ export default class EditModal extends Component {
   };
 
   updatePhone = () => {
-    const { viewer } = this.props;
+    const { viewer, editingPhone } = this.props;
     const { phoneModelInput, phoneImageInput } = this.refs;
 
+    const phoneId = editingPhone.phoneId;
+
     Relay.Store.commitUpdate(
-      new AddPhoneMutation({
+      new UpdatePhoneMutation({
         viewer,
+        phoneId,
         phoneModel: phoneModelInput.value,
         phoneImage: phoneImageInput.value,
       }),

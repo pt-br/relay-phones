@@ -142,10 +142,10 @@ const UpdatePhoneMutation = mutationWithClientMutationId({
       type: new GraphQLNonNull(GraphQLString),
     },
     phoneModel: {
-      type: new GraphQLNonNull(GraphQLString),
+      type: GraphQLString,
     },
     phoneImage: {
-      type: new GraphQLNonNull(GraphQLString),
+      type: GraphQLString,
     },
   },
   outputFields: {
