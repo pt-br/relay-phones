@@ -8,16 +8,15 @@ class User {
 
   /**
    * This function will be called by Database.js.
-   * It inserts a Message into our Bottle.
+   * It inserts a Phone to User.
    */
   addPhone(phone) {
-    console.log('[User.js] Adding Phone into User...');
     this.phones.push(phone);
   }
 
   /**
    * This function will be called by Database.js.
-   * It returns the messages of the Bottle.
+   * It returns the phones of the User.
    */
   getPhones() {
     return this.phones;
@@ -25,11 +24,28 @@ class User {
 
   /**
    * This function will be called by Database.js.
-   * It removes a message based on messageId.
+   * It removes a phone based on phoneId.
    */
   removePhoneById(phoneId) {
-    console.log(`[User.js] Removing Phone(PhoneId: ${phoneId}) from User...`);
     this.phones = this.phones.filter(phone => phone.phoneId !== phoneId);
+    return this.phones;
+  }
+
+  /**
+   * This function will be called by GraphQL.
+   * It updates a phone based on phoneId.
+   */
+  updatePhone(phoneId, phoneModel, phoneImage) {
+    this.phones.map(phone => {
+      if (phone.phoneId == phoneId) {
+        /**
+         * Only update values if they are not empty.
+         */
+        phoneModel.length > 0 ? phone.model = phoneModel : false;
+        phoneImage.length > 0 ? phone.image = phoneImage : false;
+      }
+    });
+    return this.phones;
   }
 }
 

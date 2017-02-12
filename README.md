@@ -1,6 +1,8 @@
 # relay-phones
 
-A sample relay application
+A sample relay application.
+
+See it running at https://relay-phones.herokuapp.com
 
 ###Steps to run:
 

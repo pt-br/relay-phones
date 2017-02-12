@@ -8,7 +8,6 @@ export default class AddPhone extends Component {
 
   openAddModal = () => {
     const { handleModal } = this.props;
-
     handleModal(true);
   };
 

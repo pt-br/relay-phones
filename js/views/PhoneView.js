@@ -6,9 +6,11 @@ import TypedTransition from '../core/TypedTransition';
 import Title from '../components/Title';
 import PhoneList from '../components/PhoneList';
 import AddModal from '../components/AddModal';
+import EditModal from '../components/EditModal';
 
 import AddPhoneMutation from '../mutations/AddPhoneMutation';
 import RemovePhoneMutation from '../mutations/RemovePhoneMutation';
+import UpdatePhoneMutation from '../mutations/UpdatePhoneMutation';
 
 class PhoneView extends Component {
 
@@ -16,12 +18,27 @@ class PhoneView extends Component {
     super(props);
     this.state = {
       modalVisible: false,
+      editModalVisible: false,
+      editingPhone: {
+        phoneId: false,
+        phoneModel: false,
+      },
     };
   }
 
   handleModal = (modalVisible) => {
     this.setState({
       modalVisible,
+    });
+  };
+
+  handleEditModal = (editModalVisible, phoneId, phoneModel) => {
+    this.setState({
+      editModalVisible,
+      editingPhone: {
+        phoneId,
+        phoneModel,
+      },
     });
   };
 
@@ -38,19 +55,41 @@ class PhoneView extends Component {
     );
   }
 
+  renderEditModal() {
+    const { editModalVisible, editingPhone } = this.state;
+    const { viewer } = this.props;
+
+    if (!editModalVisible) {
+      return null;
+    }
+
+    return (
+      <EditModal
+        viewer={viewer}
+        editingPhone={editingPhone}
+        handleEditModal={this.handleEditModal}
+      />
+    );
+  }
+
   render() {
     const { viewer } = this.props;
 
     return (
       <div>
         {this.renderModal()}
+        {this.renderEditModal()}
         <div style={Style.container}>
           <div style={Style.innerContainer}>
             <Title text="Relay Phones - Demo Application" />
             <div style={Style.viewSource}>
               view <a target="_blank" href="https://github.com/pt-br/relay-phones">source</a>
             </div>
-            <PhoneList viewer={viewer} handleModal={this.handleModal}/>
+            <PhoneList
+              viewer={viewer}
+              handleModal={this.handleModal}
+              handleEditModal={this.handleEditModal}
+            />
           </div>
         </div>
       </div>
@@ -86,6 +125,7 @@ export default Relay.createContainer(PhoneView, {
       fragment on User {
         ${AddPhoneMutation.getFragment('viewer')}
         ${RemovePhoneMutation.getFragment('viewer')}
+        ${UpdatePhoneMutation.getFragment('viewer')}
         phones(first: 908098879) {
           edges {
             node {
