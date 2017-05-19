@@ -14,10 +14,9 @@ install:
 before_script:
   - npm run update-schema
 script:
-  - npm start &
-  - process.exit(1);
+  - npm run update-schema
 after_script:
-  - process.exit(1);
+  - npm run update-schema
 cache:
   directories:
     - node_modules
