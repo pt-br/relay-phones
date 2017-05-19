@@ -27,6 +27,7 @@ class PhoneView extends Component {
   }
 
   handleModal = (modalVisible) => {
+    console.log('handleModal');
     this.setState({
       modalVisible,
     });
