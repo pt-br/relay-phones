@@ -3,7 +3,7 @@ node_js:
   - "7.7.3"
 branches:
   only:
-    - test
+    - master
 sudo: required
 dist: trusty
 install:
