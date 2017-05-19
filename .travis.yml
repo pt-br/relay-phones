@@ -14,7 +14,7 @@ install:
 before_script:
   - npm run update-schema
 script:
-  - npm start
+  - npm start &
   - process.exit(1);
 after_script:
   - process.exit(1);
