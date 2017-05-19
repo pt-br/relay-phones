@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - "7.7.3"
+branches:
+  only:
+    - test
+sudo: required
+dist: trusty
+install:
+  # Install the Travis artifacts CLI app
+  - curl -sL https://raw.githubusercontent.com/travis-ci/artifacts/master/install | bash
+  # Install package.json dependencies
+  - npm install
+before_script:
+  - npm run update-schema
+script:
+  - npm start
+cache:
+  directories:
+    - node_modules
